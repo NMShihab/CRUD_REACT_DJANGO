@@ -1,19 +1,41 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { Button, Card, Col, Form, Row } from "react-bootstrap";
 import "./Sidebar.css";
 
 function Sidebar() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phn, setPhn] = useState("");
+  const url = "http://127.0.0.1:8000/contact_api/contact/";
 
-  const saveContact = (e) => {
-    console.log(e);
-  };
+  const [contact, setContact] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phn: "",
+  });
+
+  function handleContact(e) {
+    const newContact = { ...contact };
+    newContact[e.target.id] = e.target.value;
+    setContact(newContact);
+    console.log(newContact);
+  }
+
+  function saveContact(e) {
+    e.preventDefault();
+    axios
+      .post(url, {
+        firstName: contact.firstName,
+        lastName: contact.lastName,
+        email: contact.email,
+        phn: contact.phn,
+      })
+      .then((res) => {
+        console.log(res.contact);
+      });
+  }
   return (
     <div className="sidebar">
-      <Form>
+      <Form onSubmit={(e) => saveContact(e)}>
         <Form.Group as={Row} controlId="formHorizontalEmail">
           <Form.Label column sm={4}>
             First Name
@@ -22,8 +44,9 @@ function Sidebar() {
             <Form.Control
               type="text"
               placeholder="First Name"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
+              id="firstName"
+              value={contact.firstName}
+              onChange={(e) => handleContact(e)}
             />
           </Col>
         </Form.Group>
@@ -35,8 +58,9 @@ function Sidebar() {
             <Form.Control
               type="text"
               placeholder="Last Name"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
+              id="lastName"
+              value={contact.lastName}
+              onChange={(e) => handleContact(e)}
             />
           </Col>
         </Form.Group>
@@ -48,8 +72,9 @@ function Sidebar() {
             <Form.Control
               type="email"
               placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              id="email"
+              value={contact.email}
+              onChange={(e) => handleContact(e)}
             />
           </Col>
         </Form.Group>
@@ -62,14 +87,15 @@ function Sidebar() {
             <Form.Control
               type="text"
               placeholder="Phone No"
-              value={phn}
-              onChange={(e) => setPhn(e.target.value)}
+              id="phn"
+              value={contact.phn}
+              onChange={(e) => handleContact(e)}
             />
           </Col>
         </Form.Group>
         <Form.Group as={Row}>
           <Col sm={{ span: 8, offset: 4 }}>
-            <Button onClick={saveContact} size="lg" type="submit" block>
+            <Button size="lg" type="submit" block>
               Add
             </Button>
           </Col>
