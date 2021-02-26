@@ -1,7 +1,12 @@
 .sidebar {
-  position: sticky;
-  flex: 0.4;
-  border-radius: 10px;
-  border: 1px solid lightgray;
+  position: fixed;
+  top: 100px;
+  left: 20px;
+  flex: 0.5;
+  border-radius: 5px;
   padding: 20px;
+  z-index: 1;
+
+  height: auto;
+  overflow-x: hidden;
 }
