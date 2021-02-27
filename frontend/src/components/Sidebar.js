@@ -7,15 +7,14 @@ function Sidebar() {
   const url = "http://127.0.0.1:8000/contact_api/contact/";
 
   const [contact, setContact] = useState({
-    firstName: "",
-    lastName: "",
+    first_name: "",
+    last_name: "",
     email: "",
-    phn: "",
   });
 
   function handleContact(e) {
     const newContact = { ...contact };
-    newContact[e.target.id] = e.target.value;
+    newContact[e.target.name] = e.target.value;
     setContact(newContact);
     console.log(newContact);
   }
@@ -24,14 +23,14 @@ function Sidebar() {
     e.preventDefault();
     axios
       .post(url, {
-        firstName: contact.firstName,
-        lastName: contact.lastName,
+        first_name: contact.first_name,
+        last_name: contact.last_name,
         email: contact.email,
-        phn: contact.phn,
       })
       .then((res) => {
-        console.log(res.contact);
-      });
+        console.log(res.data);
+      })
+      .catch((error) => console.log(error));
   }
   return (
     <div className="sidebar">
@@ -44,8 +43,8 @@ function Sidebar() {
             <Form.Control
               type="text"
               placeholder="First Name"
-              id="firstName"
-              value={contact.firstName}
+              name="first_name"
+              value={contact.first_name}
               onChange={(e) => handleContact(e)}
             />
           </Col>
@@ -58,8 +57,8 @@ function Sidebar() {
             <Form.Control
               type="text"
               placeholder="Last Name"
-              id="lastName"
-              value={contact.lastName}
+              name="last_name"
+              value={contact.last_name}
               onChange={(e) => handleContact(e)}
             />
           </Col>
@@ -72,27 +71,13 @@ function Sidebar() {
             <Form.Control
               type="email"
               placeholder="Email"
-              id="email"
+              name="email"
               value={contact.email}
               onChange={(e) => handleContact(e)}
             />
           </Col>
         </Form.Group>
 
-        <Form.Group as={Row} controlId="formHorizontalPassword">
-          <Form.Label column sm={4}>
-            Phone No
-          </Form.Label>
-          <Col sm={8}>
-            <Form.Control
-              type="text"
-              placeholder="Phone No"
-              id="phn"
-              value={contact.phn}
-              onChange={(e) => handleContact(e)}
-            />
-          </Col>
-        </Form.Group>
         <Form.Group as={Row}>
           <Col sm={{ span: 8, offset: 4 }}>
             <Button size="lg" type="submit" block>
