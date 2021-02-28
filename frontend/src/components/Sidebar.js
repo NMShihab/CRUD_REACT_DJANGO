@@ -31,6 +31,12 @@ function Sidebar() {
         console.log(res.data);
       })
       .catch((error) => console.log(error));
+
+    setContact({
+      first_name: "",
+      last_name: "",
+      email: "",
+    });
   }
   return (
     <div className="sidebar">

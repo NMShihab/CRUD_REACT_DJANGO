@@ -125,6 +125,13 @@ USE_TZ = True
 STATIC_URL = '/static/'
 CORS_ORIGIN_WHITELIST = [
 
-    "http://localhost:3000",
+    "http://localhost:3000"
 
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        #'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.AllowAny',
+    ]
+}
