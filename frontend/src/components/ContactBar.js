@@ -4,7 +4,7 @@ import axios from "axios";
 
 import "./ContactBar.css";
 
-function ContactBar() {
+function ContactBar(props) {
   const url = "http://127.0.0.1:8000/contact_api/contact/";
   const [contact, setContact] = useState([]);
 
@@ -19,6 +19,10 @@ function ContactBar() {
         console.log(error);
       });
   }, []);
+
+  function updateContact(id) {
+    console.log(id);
+  }
   return (
     <div className="contactBar">
       <div className="contactBar__contactElement">
@@ -35,7 +39,12 @@ function ContactBar() {
             </Col>
 
             <Col sm={1}>
-              <Button variant="outline-warning">Edit</Button>{" "}
+              <Button
+                variant="outline-warning"
+                onClick={() => updateContact(contact.id)}
+              >
+                Edit
+              </Button>{" "}
             </Col>
             <Col sm={1}>
               <Button variant="outline-danger">Delete</Button>{" "}

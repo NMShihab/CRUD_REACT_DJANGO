@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Button, Card, Col, Form, Row } from "react-bootstrap";
+import { Button, Col, Form, Row, Container } from "react-bootstrap";
 import "./Sidebar.css";
 
 function Sidebar() {
@@ -40,58 +40,64 @@ function Sidebar() {
   }
   return (
     <div className="sidebar">
-      <Form onSubmit={(e) => saveContact(e)}>
-        <Form.Group as={Row} controlId="formHorizontalEmail">
-          <Form.Label column sm={4}>
-            First Name
-          </Form.Label>
-          <Col sm={8}>
-            <Form.Control
-              type="text"
-              placeholder="First Name"
-              name="first_name"
-              value={contact.first_name}
-              onChange={(e) => handleContact(e)}
-            />
-          </Col>
-        </Form.Group>
-        <Form.Group as={Row} controlId="formHorizontalEmail">
-          <Form.Label column sm={4}>
-            Last Name
-          </Form.Label>
-          <Col sm={8}>
-            <Form.Control
-              type="text"
-              placeholder="Last Name"
-              name="last_name"
-              value={contact.last_name}
-              onChange={(e) => handleContact(e)}
-            />
-          </Col>
-        </Form.Group>
-        <Form.Group as={Row} controlId="formHorizontalEmail">
-          <Form.Label column sm={4}>
-            Email
-          </Form.Label>
-          <Col sm={8}>
-            <Form.Control
-              type="email"
-              placeholder="Email"
-              name="email"
-              value={contact.email}
-              onChange={(e) => handleContact(e)}
-            />
-          </Col>
-        </Form.Group>
+      <Container>
+        <Row>
+          <Col sm={4}>
+            <Form onSubmit={(e) => saveContact(e)}>
+              <Form.Group as={Row} controlId="formHorizontalEmail">
+                <Form.Label column sm={4}>
+                  First Name
+                </Form.Label>
+                <Col sm={8}>
+                  <Form.Control
+                    type="text"
+                    placeholder="First Name"
+                    name="first_name"
+                    value={contact.first_name}
+                    onChange={(e) => handleContact(e)}
+                  />
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row} controlId="formHorizontalEmail">
+                <Form.Label column sm={4}>
+                  Last Name
+                </Form.Label>
+                <Col sm={8}>
+                  <Form.Control
+                    type="text"
+                    placeholder="Last Name"
+                    name="last_name"
+                    value={contact.last_name}
+                    onChange={(e) => handleContact(e)}
+                  />
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row} controlId="formHorizontalEmail">
+                <Form.Label column sm={4}>
+                  Email
+                </Form.Label>
+                <Col sm={8}>
+                  <Form.Control
+                    type="email"
+                    placeholder="Email"
+                    name="email"
+                    value={contact.email}
+                    onChange={(e) => handleContact(e)}
+                  />
+                </Col>
+              </Form.Group>
 
-        <Form.Group as={Row}>
-          <Col sm={{ span: 8, offset: 4 }}>
-            <Button size="lg" type="submit" block>
-              Add
-            </Button>
+              <Form.Group as={Row}>
+                <Col sm={{ span: 8, offset: 4 }}>
+                  <Button size="lg" type="submit" block>
+                    Add
+                  </Button>
+                </Col>
+              </Form.Group>
+            </Form>
           </Col>
-        </Form.Group>
-      </Form>
+        </Row>
+      </Container>
     </div>
   );
 }

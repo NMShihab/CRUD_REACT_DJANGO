@@ -1,26 +1,24 @@
-import { Col, Container, Row } from "react-bootstrap";
 import "./App.css";
-import ContactBar from "./components/ContactBar";
-
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
+import ContactBar from "./components/ContactBar";
+import Edit from "./components/Update";
 
 function App() {
   return (
     <div className="app">
-      <Header />
-      <div className="app__body">
-        <Container>
-          <Row>
-            <Col sm={4}>
-              <Sidebar />
-            </Col>
-            <Col sm={8}>
-              <ContactBar />
-            </Col>
-          </Row>
-        </Container>
-      </div>
+      <Router>
+        <Header />
+        <div className="app__body">
+          <Switch>
+            <Route path="/addUser" component={Sidebar} />
+            <Route path="/edit/:id" component={Edit} />
+
+            <Route exact path="/" component={ContactBar} />
+          </Switch>
+        </div>
+      </Router>
     </div>
   );
 }

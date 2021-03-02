@@ -1,12 +1,20 @@
 import React from "react";
-import { Navbar } from "react-bootstrap";
+import { Button, Navbar } from "react-bootstrap";
 import "./Header.css";
 
 function Header() {
   return (
     <div className="header">
-      <Navbar bg="light" expand="lg">
-        <Navbar.Brand href="#">Contact</Navbar.Brand>
+      <Navbar>
+        <Navbar.Brand href="#home">Contact</Navbar.Brand>
+        <Navbar.Toggle />
+        <Navbar.Collapse className="justify-content-end">
+          <Navbar.Text>
+            <Button type="submit" variant="outline-primary">
+              Add Contact
+            </Button>
+          </Navbar.Text>
+        </Navbar.Collapse>
       </Navbar>
     </div>
   );
