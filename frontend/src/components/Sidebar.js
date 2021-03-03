@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Button, Col, Form, Row, Container } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 import "./Sidebar.css";
 
 function Sidebar() {
@@ -11,6 +12,8 @@ function Sidebar() {
     last_name: "",
     email: "",
   });
+
+  const history = useHistory();
 
   function handleContact(e) {
     const newContact = { ...contact };
@@ -37,6 +40,8 @@ function Sidebar() {
       last_name: "",
       email: "",
     });
+
+    history.push("/");
   }
   return (
     <div className="sidebar">
